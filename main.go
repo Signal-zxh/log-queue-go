@@ -25,7 +25,7 @@ func main() {
 
 	fmt.Println("消费者已启动，等待接收消息...")
 
-	// 连接kafka
+	// 连接kafka，创建生产者
 	producer, err := sarama.NewSyncProducer([]string{"localhost:9092"}, nil)
 	if err != nil {
 		log.Fatal("创建生产者失败", err)
@@ -53,6 +53,5 @@ func main() {
 		log.Println("接收消息出错：", err)
 	case <-time.After(time.Second * 5):
 		fmt.Println("5秒后未收到消息")
-
 	}
 }
